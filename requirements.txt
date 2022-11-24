@@ -16,4 +16,5 @@ python-multipart
 PyYAML
 dill==0.3.5.1
 utils
+google-cloud-storage
 -e .
