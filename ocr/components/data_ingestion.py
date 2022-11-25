@@ -1,7 +1,7 @@
-import os, sys
+import os
+import sys
 from zipfile import ZipFile
 from ocr.logger import logging
-from ocr.constants import *
 from ocr.exception import CustomException
 from ocr.configuration.gcloud_syncer import GCloudSync
 from ocr.entity.config_entity import DataIngestionConfig

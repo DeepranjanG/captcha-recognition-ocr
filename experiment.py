@@ -35,6 +35,7 @@ class Dataset(Dataset):
         img = Image.open(path).convert('RGB')
 
         img_tensor = self.transform(img)
+
         return img_tensor, label
 
 
@@ -230,6 +231,9 @@ class OCR:
 
 
 if __name__ == "__main__":
+
+    # TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\train'
+    # VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\val'
 
     TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\train_png'
     VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\valid_png'
