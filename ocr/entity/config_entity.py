@@ -33,8 +33,14 @@ class DataTransformationConfig:
 @dataclass
 class ModelTrainerConfig:
     def __init__(self):
-        self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR,
-                                                                   MODEL_TRAINER_ARTIFACTS_DIR)
+        self.MODEL_TRAINER_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR,
+                                                             MODEL_TRAINER_ARTIFACTS_DIR)
+        self.TRAINED_MODEL_PATH = os.path.join(self.MODEL_TRAINER_ARTIFACTS_DIR, MODEL_NAME)
         self.BATCH_SIZE = BATCH_SIZE
         self.NUM_WORKERS = NUM_WORKERS
+        self.WEIGHT_DECAY = WEIGHT_DECAY
+        self.MOMENTUM = MOMENTUM
         self.EPOCHS = EPOCHS
+        self.LR = LR
+
+

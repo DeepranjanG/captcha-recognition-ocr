@@ -16,5 +16,4 @@ class DataTransformationArtifacts:
 
 @dataclass
 class ModelTrainerArtifacts:
-    transformed_train_object: str
-    transformed_valid_object: str
+    trained_model_path: str

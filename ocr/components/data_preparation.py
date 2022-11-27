@@ -29,16 +29,17 @@ class DataPreparation(Dataset):
         except Exception as e:
             raise CustomException(e, sys) from e
 
-    def __getitem__(self, item):
+    def __getitem__(self, idx):
         try:
-            path = self.img_list[item]
+            path = self.img_list[idx]
 
-            label = os.path.basename(path).split('.')[0].lower().split()
+            label = os.path.basename(path).split('.')[0].lower().strip()
             img = Image.open(path).convert('RGB')
 
             img_tensor = self.transform(img)
 
             logging.info(f"Data preparation pipeline completed")
+
 
             return img_tensor, label
         except Exception as e:

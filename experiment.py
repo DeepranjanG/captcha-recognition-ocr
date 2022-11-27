@@ -1,15 +1,11 @@
 import os
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from PIL import Image
-from tqdm import tqdm
-
 import numpy as np
-import pickle as pkl
 import matplotlib.pyplot as plt
 
 
@@ -22,8 +18,8 @@ class Dataset(Dataset):
         self.img_list = [os.path.join(abspath, path) for path in path_list]
 
         self.transform = transforms.Compose([
-            transforms.RandomRotation(degrees=90, expand=True),
-            transforms.Resize((512, 128)),
+            # transforms.RandomRotation(degrees=90, expand=True),
+            # transforms.Resize((512, 128)),
             transforms.ToTensor(),
         ])
 
@@ -37,6 +33,9 @@ class Dataset(Dataset):
         img = Image.open(path).convert('RGB')
 
         img_tensor = self.transform(img)
+
+        print(img_tensor)
+        print(label)
 
         return img_tensor, label
 
@@ -78,12 +77,12 @@ class CRNN(nn.Module):
         )
 
         self.mapSeq = nn.Sequential(
-            nn.Linear(15872, 256),
+            nn.Linear(1024, 256),
             self.dropout
         )
 
-        self.lstm_0 = nn.GRU(256, 512, bidirectional=True)
-        self.lstm_1 = nn.GRU(1024, 256, bidirectional=True)
+        self.lstm_0 = nn.GRU(256, 256, bidirectional=True)
+        self.lstm_1 = nn.GRU(512, 256, bidirectional=True)
 
         self.out = nn.Sequential(
             nn.Linear(512, vocab_size),
@@ -136,7 +135,10 @@ class OCR:
 
     def encode(self, labels):
         length_per_label = [len(label) for label in labels]
+        print(labels)
         joined_label = ''.join(labels)
+
+        print(joined_label)
 
         joined_encoding = []
         for char in joined_label:
@@ -234,16 +236,16 @@ class OCR:
 
 if __name__ == "__main__":
 
-    # TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\train'
-    # VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\val'
+    TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\train'
+    VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\archive\data\val'
 
-    TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\train_png'
-    VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\valid_png'
+    # TRAIN_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\train_png'
+    # VAL_DIR = r'D:\Project\DL\custom-ocr-pytorch\data\valid_png'
 
     BATCH_SIZE = 8
-    N_WORKERS = 2
+    N_WORKERS = 0
 
-    CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789 '
+    CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789'
     # CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ '
     VOCAB_SIZE = len(CHARS) + 1
 
