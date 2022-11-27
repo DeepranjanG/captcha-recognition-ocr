@@ -4,10 +4,10 @@ from ocr.logger import logging
 from ocr.exception import CustomException
 from ocr.configuration.gcloud_syncer import GCloudSync
 from ocr.entity.config_entity import ModelPusherConfig
+from ocr.entity.artifact_entity import ModelPusherArtifacts
 
 
 class ModelPusher:
-
     def __init__(self, model_pusher_config: ModelPusherConfig):
         """
         :param model_pusher_config: Configuration for model pusher
@@ -26,14 +26,15 @@ class ModelPusher:
         try:
             # Uploading the model to gcloud storage
 
-
+            self.gcloud.sync_folder_to_gcloud(self.model_pusher_config.BUCKET_NAME,
+                                              self.model_pusher_config.TRAINED_MODEL_PATH,
+                                              self.model_pusher_config.MODEL_NAME)
 
             logging.info("Uploaded best model to gcloud storage")
 
             # Saving the model pusher artifacts
             model_pusher_artifact = ModelPusherArtifacts(
-                bucket_name=self.model_pusher_config.BUCKET_NAME,
-                s3_model_path=self.model_pusher_config.S3_MODEL_KEY_PATH,
+                bucket_name=self.model_pusher_config.BUCKET_NAME
             )
             logging.info("Exited the initiate_model_pusher method of ModelTrainer class")
             return model_pusher_artifact

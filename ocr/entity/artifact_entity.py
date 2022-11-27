@@ -17,3 +17,8 @@ class DataTransformationArtifacts:
 @dataclass
 class ModelTrainerArtifacts:
     trained_model_path: str
+
+
+@dataclass
+class ModelPusherArtifacts:
+    bucket_name: str
