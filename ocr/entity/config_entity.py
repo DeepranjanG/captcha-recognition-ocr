@@ -13,3 +13,19 @@ class DataIngestionConfig:
         self.VALID_DATA_ARTIFACT_DIR = os.path.join(self.DATA_INGESTION_ARTIFACTS_DIR, DATA_INGESTION_VALID_DIR)
         self.ZIP_FILE_DIR = os.path.join(self.DATA_INGESTION_ARTIFACTS_DIR)
         self.ZIP_FILE_PATH = os.path.join(self.DATA_INGESTION_ARTIFACTS_DIR, self.ZIP_FILE_NAME)
+
+
+@dataclass
+class DataTransformationConfig:
+    def __init__(self):
+        self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR,
+                                                                   DATA_TRANSFORMATION_ARTIFACTS_DIR)
+        self.TRAIN_TRANSFORM_DATA_ARTIFACT_DIR = os.path.join(self.DATA_TRANSFORMATION_ARTIFACTS_DIR,
+                                                              DATA_TRANSFORMATION_TRAIN_DIR)
+        self.VALID_TRANSFORM_DATA_ARTIFACT_DIR = os.path.join(self.DATA_TRANSFORMATION_ARTIFACTS_DIR,
+                                                              DATA_TRANSFORMATION_VALID_DIR)
+        self.TRAIN_TRANSFORM_OBJECT_FILE_PATH = os.path.join(self.TRAIN_TRANSFORM_DATA_ARTIFACT_DIR,
+                                                             DATA_TRANSFORMATION_TRAIN_FILE_NAME)
+        self.VALID_TRANSFORM_OBJECT_FILE_PATH = os.path.join(self.VALID_TRANSFORM_DATA_ARTIFACT_DIR,
+                                                             DATA_TRANSFORMATION_VALID_FILE_NAME)
+

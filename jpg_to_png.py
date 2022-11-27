@@ -21,6 +21,39 @@ def jpg_to_png(current_location, destination, filenames):
     return "Conversion done"
 
 
-jpg_to_png(train_path, train_path_png, train_files)
-jpg_to_png(valid_path, valid_path_png, valid_files)
+# jpg_to_png(train_path, train_path_png, train_files)
+# jpg_to_png(valid_path, valid_path_png, valid_files)
 
+
+
+# import required libraries
+import torch
+import torchvision.transforms as T
+from PIL import Image
+
+# read the input image
+img = Image.open(r'D:\Project\DL\custom-ocr-pytorch\data\train\261.jpg')
+
+# define a transform to rotate he input image
+# transform = T.RandomRotation(degrees=(60,90), expand=True)
+
+# define a transform to horizontally flip an image
+# randomly with a given probability
+transform = T.RandomVerticalFlip(p=1)
+
+# rotate the input image using above defined trasnform
+img = transform(img)
+
+# dispaly the rotated image
+img.show()
+
+
+def image_rotate(path):
+
+    angle = 90
+    input_image = Image.open(path)
+    output = input_image.rotate(angle, Image.NEAREST, expand = True, fillcolor = (255,255,255))
+    output.save("data/1.jpg")
+
+
+# image_rotate(r'D:\Project\DL\custom-ocr-pytorch\data\train\000.jpg')

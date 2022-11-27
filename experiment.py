@@ -22,6 +22,8 @@ class Dataset(Dataset):
         self.img_list = [os.path.join(abspath, path) for path in path_list]
 
         self.transform = transforms.Compose([
+            transforms.RandomRotation(degrees=90, expand=True),
+            transforms.Resize((512, 128)),
             transforms.ToTensor(),
         ])
 
@@ -76,12 +78,12 @@ class CRNN(nn.Module):
         )
 
         self.mapSeq = nn.Sequential(
-            nn.Linear(1024, 256),
+            nn.Linear(15872, 256),
             self.dropout
         )
 
-        self.lstm_0 = nn.GRU(256, 256, bidirectional=True)
-        self.lstm_1 = nn.GRU(512, 256, bidirectional=True)
+        self.lstm_0 = nn.GRU(256, 512, bidirectional=True)
+        self.lstm_1 = nn.GRU(1024, 256, bidirectional=True)
 
         self.out = nn.Sequential(
             nn.Linear(512, vocab_size),
@@ -241,14 +243,15 @@ if __name__ == "__main__":
     BATCH_SIZE = 8
     N_WORKERS = 2
 
-    CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    CHARS = 'abcdefghijklmnopqrstuvwxyz0123456789 '
+    # CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ '
     VOCAB_SIZE = len(CHARS) + 1
 
     lr = 0.02
     weight_decay = 1e-5
     momentum = 0.7
 
-    EPOCHS = 2
+    EPOCHS = 1
 
     # Dataset
     train_dataset = Dataset(TRAIN_DIR)

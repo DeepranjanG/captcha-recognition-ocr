@@ -57,14 +57,14 @@ class DataIngestion:
 
             logging.info("Unzipped file and split into train and valid")
 
-            data_ingestion_artifact = DataIngestionArtifacts(train_file_path=train_file_path,
+            data_ingestion_artifacts = DataIngestionArtifacts(train_file_path=train_file_path,
                                                              valid_file_path=valid_file_path)
 
             logging.info("Exited the initiate_data_ingestion method of Data ingestion class")
 
-            logging.info(f"Data ingestion artifact: {data_ingestion_artifact}")
+            logging.info(f"Data ingestion artifact: {data_ingestion_artifacts}")
 
-            return data_ingestion_artifact
+            return data_ingestion_artifacts
 
         except Exception as e:
             raise CustomException(e, sys) from e
