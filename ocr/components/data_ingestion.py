@@ -10,6 +10,10 @@ from ocr.entity.artifact_entity import DataIngestionArtifacts
 
 class DataIngestion:
     def __init__(self, data_ingestion_config: DataIngestionConfig):
+
+        """
+        :param data_ingestion_config: Configuration for data ingestion
+        """
         self.data_ingestion_config = data_ingestion_config
         self.gcloud = GCloudSync()
 
@@ -38,13 +42,20 @@ class DataIngestion:
 
             logging.info("Exited the unzip_and_clean method of Data ingestion class")
 
-            return self.data_ingestion_config.TRAIN_DATA_ARTIFACT_DIR, \
-                   self.data_ingestion_config.VALID_DATA_ARTIFACT_DIR
+            return self.data_ingestion_config.TRAIN_DATA_ARTIFACT_DIR, self.data_ingestion_config.VALID_DATA_ARTIFACT_DIR
 
         except Exception as e:
             raise CustomException(e, sys) from e
 
     def initiate_data_ingestion(self) -> DataIngestionArtifacts:
+
+        """
+        Method Name :   initiate_data_ingestion
+        Description :   This function initiates a data ingestion steps
+
+        Output      :   Returns data ingestion artifact
+        On Failure  :   Write an exception log and then raise an exception
+        """
 
         logging.info("Entered the initiate_data_ingestion method of Data ingestion class")
         try:
@@ -58,7 +69,7 @@ class DataIngestion:
             logging.info("Unzipped file and split into train and valid")
 
             data_ingestion_artifacts = DataIngestionArtifacts(train_file_path=train_file_path,
-                                                             valid_file_path=valid_file_path)
+                                                              valid_file_path=valid_file_path)
 
             logging.info("Exited the initiate_data_ingestion method of Data ingestion class")
 

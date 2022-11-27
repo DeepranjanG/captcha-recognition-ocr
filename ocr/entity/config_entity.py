@@ -29,3 +29,12 @@ class DataTransformationConfig:
         self.VALID_TRANSFORM_OBJECT_FILE_PATH = os.path.join(self.VALID_TRANSFORM_DATA_ARTIFACT_DIR,
                                                              DATA_TRANSFORMATION_VALID_FILE_NAME)
 
+
+@dataclass
+class ModelTrainerConfig:
+    def __init__(self):
+        self.DATA_TRANSFORMATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR,
+                                                                   MODEL_TRAINER_ARTIFACTS_DIR)
+        self.BATCH_SIZE = BATCH_SIZE
+        self.NUM_WORKERS = NUM_WORKERS
+        self.EPOCHS = EPOCHS

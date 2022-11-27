@@ -12,10 +12,23 @@ class DataTransformation:
 
     def __init__(self, data_ingestion_artifacts:DataIngestionArtifacts,
                  data_transformation_config: DataTransformationConfig):
+
+        """
+        :param data_ingestion_artifacts: Output reference of data ingestion artifact stage
+        :param data_transformation_config: Configuration for data transformation
+        """
         self.data_ingestion_artifacts = data_ingestion_artifacts
         self.data_transformation_config = data_transformation_config
 
     def initiate_data_transformation(self) -> DataTransformationArtifacts:
+
+        """
+        Method Name :   initiate_data_transformation
+        Description :   This function initiates a data transformation steps
+
+        Output      :   Returns data transformation artifact
+        On Failure  :   Write an exception log and then raise an exception
+        """
 
         try:
 

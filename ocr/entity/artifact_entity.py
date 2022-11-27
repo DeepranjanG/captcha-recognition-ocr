@@ -12,3 +12,9 @@ class DataIngestionArtifacts:
 class DataTransformationArtifacts:
     transformed_train_object: str
     transformed_valid_object: str
+
+
+@dataclass
+class ModelTrainerArtifacts:
+    transformed_train_object: str
+    transformed_valid_object: str
