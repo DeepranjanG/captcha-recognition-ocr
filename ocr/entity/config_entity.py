@@ -44,3 +44,11 @@ class ModelTrainerConfig:
         self.LR = LR
 
 
+@dataclass
+class ModelPusherConfig:
+
+    def __init__(self):
+        self.TRAINED_MODEL_PATH = os.path.join(os.getcwd(),ARTIFACTS_DIR, MODEL_TRAINER_ARTIFACTS_DIR)
+
+
+

@@ -40,7 +40,6 @@ class DataPreparation(Dataset):
 
             logging.info(f"Data preparation pipeline completed")
 
-
             return img_tensor, label
         except Exception as e:
             raise CustomException(e, sys) from e
