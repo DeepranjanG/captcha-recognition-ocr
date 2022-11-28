@@ -7,6 +7,9 @@ RUN apt-get update -y \
 && apt-get install python3-pip -y \
 && apt-get install ffmpeg libsm6 libxext6  -y
 
+
+RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-410.0.0-linux-x86_64.tar.gz
+
 ENV AIRFLOW_HOME="/app/airflow"
 ENV AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=1000
 ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
@@ -20,7 +23,7 @@ RUN pip install torch torchvision torchaudio --extra-index-url https://download.
 RUN pip install -e .
 
 RUN airflow db init
-RUN airflow users create  -e avnish@ineuron.ai -f Avnish -l Yadav -p admin -r Admin  -u admin
+RUN airflow users create  -e deepranjan@ineuron.ai -f Deepranjan -l Gupta -p admin -r Admin  -u admin
 RUN chmod 777 start.sh
 ENTRYPOINT [ "/bin/sh" ]
 CMD ["start.sh"]
