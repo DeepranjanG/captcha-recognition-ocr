@@ -4,7 +4,6 @@ WORKDIR ocr
 COPY . /ocr
 
 RUN apt update -y &&  \
-    apt-get install google-cloud-cli -y &&  \
     apt-get update &&  \
     pip install --upgrade pip &&  \
     apt-get install ffmpeg libsm6 libxext6  -y &&  \
