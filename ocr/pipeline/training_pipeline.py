@@ -33,7 +33,7 @@ class TrainPipeline:
         except Exception as e:
             raise CustomException(e, sys) from e
 
-    def start_data_transformation(self, data_ingestion_artifacts:DataIngestionArtifacts) -> DataTransformationArtifacts:
+    def start_data_transformation(self, data_ingestion_artifacts: DataIngestionArtifacts) -> DataTransformationArtifacts:
 
         logging.info("Entered the start_data_transformation method of TrainPipeline class")
 
@@ -113,7 +113,7 @@ class TrainPipeline:
             )
 
             model_evaluation_artifacts  = self.start_model_evaluation(
-                model_trainer_artifacts=model_trainer_artifacts,\
+                model_trainer_artifacts=model_trainer_artifacts,
                 data_transformation_artifacts=data_transformation_artifacts
             )
 
