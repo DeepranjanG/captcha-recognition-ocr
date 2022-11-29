@@ -20,7 +20,8 @@ class PredictionPipeline:
         """load image, returns cuda tensor"""
         logging.info("Entered the image_loader method of PredictionPipeline class")
         try:
-            image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+            # image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+            image = Image.open(io.BytesIO(image_bytes)).convert('RGB').resize((WIDTH, HEIGHT))
             convert_tensor = transforms.ToTensor()
             tensor_image = convert_tensor(image)
             logging.info("Exited the image_loader method of PredictionPipeline class")
@@ -31,10 +32,9 @@ class PredictionPipeline:
 
     def get_model_from_gcloud(self) -> str:
         """
-        Method Name :   predict
-        Description :   This method predicts the image.
-
-        Output      :   Predictions
+        Method Name :   get_model_from_gcloud
+        Description :   This method to get best model from google cloud storage
+        Output      :   best_model_path
         """
         logging.info("Entered the get_model_from_gcloud method of PredictionPipeline class")
         try:

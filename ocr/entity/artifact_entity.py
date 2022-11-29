@@ -29,6 +29,14 @@ class ModelTrainerArtifacts:
 
 
 @dataclass
+class ModelEvaluationArtifacts:
+    is_model_accepted: bool
+
+    def to_dict(self):
+        return self.__dict__
+
+
+@dataclass
 class ModelPusherArtifacts:
     bucket_name: str
 

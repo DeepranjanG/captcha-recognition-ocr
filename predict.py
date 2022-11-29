@@ -8,13 +8,17 @@ from ocr.exception import CustomException
 
 try:
 
-    best_model_path = r"D:\Project\DL\custom-ocr-pytorch\artifacts\11_28_2022_18_30_48\ModelTrainerArtifacts\model.pt"
+    best_model_path = r"D:\Project\DL\custom-ocr-pytorch\artifacts\PredictModel\model.pt"
 
     ocr = torch.load(best_model_path, map_location=torch.device(DEVICE))
 
-    path = r"D:\Project\DL\custom-ocr-pytorch\artifacts\11_28_2022_18_05_16\DataIngestionArtifacts\train\2b827.png"
+    path = r"C:\Users\deepr\OneDrive\Desktop\1.png"
 
-    image = Image.open(path).convert('RGB')
+    # path = r"C:\Users\deepr\OneDrive\Desktop\2enf4.png"
+
+    image = Image.open(path).convert('RGB').resize((200, 50))
+
+    print(image.size)
 
     convert_tensor = transforms.ToTensor()
     tensor_image = convert_tensor(image)

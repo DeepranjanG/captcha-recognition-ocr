@@ -45,6 +45,17 @@ class ModelTrainerConfig:
 
 
 @dataclass
+class ModelEvaluationConfig:
+    def __init__(self):
+        self.BUCKET_NAME: str = BUCKET_NAME
+        self.MODEL_NAME: str = MODEL_NAME
+        self.BATCH_SIZE: int = BATCH_SIZE
+        self.NUM_WORKERS: int = NUM_WORKERS
+        self.MODEL_EVALUATION_ARTIFACTS_DIR: str = os.path.join(os.getcwd(), ARTIFACTS_DIR, MODEL_EVALUATION_ARTIFACTS_DIR )
+        self.BEST_MODEL_DIR_PATH: str = os.path.join(self.MODEL_EVALUATION_ARTIFACTS_DIR, BEST_MODEL_DIR)
+
+
+@dataclass
 class ModelPusherConfig:
 
     def __init__(self):

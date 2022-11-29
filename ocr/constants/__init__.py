@@ -7,6 +7,8 @@ TIMESTAMP: str = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 ARTIFACTS_DIR = os.path.join("artifacts", TIMESTAMP)
 BUCKET_NAME = 'custom-ocr-pytorch'
 ZIP_FILE_NAME = 'dataset.zip'
+WIDTH = 200
+HEIGHT = 50
 
 use_cuda = torch.cuda.is_available()
 DEVICE = torch.device("cuda" if use_cuda else "cpu")
@@ -30,9 +32,9 @@ DATA_TRANSFORMATION_VALID_FILE_NAME = "valid.pkl"
 # Model Training Constants
 MODEL_TRAINER_ARTIFACTS_DIR = 'ModelTrainerArtifacts'
 MODEL_NAME = 'model.pt'
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 NUM_WORKERS = 2
-EPOCHS = 10
+EPOCHS = 1
 LR = 0.02
 WEIGHT_DECAY = 1e-5
 MOMENTUM = 0.7
@@ -43,6 +45,7 @@ VOCAB_SIZE = len(CHARS) + 1
 
 # Model evaluation constants
 MODEL_EVALUATION_ARTIFACTS_DIR = 'ModelEvaluationArtifacts'
+BEST_MODEL_DIR = "best_model"
 MODEL_EVALUATION_FILE_NAME = 'loss.csv'
 
 
