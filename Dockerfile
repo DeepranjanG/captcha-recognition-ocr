@@ -5,10 +5,12 @@ COPY . /ocr
 
 RUN apt update -y &&  \
     apt-get update &&  \
-    apt-get install google-cloud-cli &&  \
     pip install --upgrade pip &&  \
-    apt-get install ffmpeg libsm6 libxext6  -y &&  \
-    pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu &&  \
+    apt-get install ffmpeg libsm6 libxext6  -y
+
+RUN apt-get install google-cloud-cli
+
+RUN pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu &&  \
     pip install -r requirements.txt &&  \
     pip install -e .
 
