@@ -2,6 +2,7 @@ FROM continuumio/miniconda3
 
 WORKDIR ocr
 COPY . /ocr
+USER root
 
 RUN apt update -y &&  \
     apt-get update &&  \
