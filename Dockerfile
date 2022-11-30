@@ -10,7 +10,6 @@ RUN apt update -y &&  \
     apt-get install ffmpeg libsm6 libxext6  -y
 
 RUN apt-get install apt-transport-https ca-certificates gnupg -y
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 RUN apt-get update && apt-get install google-cloud-cli -y
 
 RUN pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu &&  \
