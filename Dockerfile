@@ -1,8 +1,7 @@
-FROM continuumio/miniconda3
-
+#FROM continuumio/miniconda3
+FROM google/cloud-sdk:latest
 WORKDIR ocr
 COPY . /ocr
-USER root
 
 RUN apt update -y &&  \
     apt-get update &&  \
@@ -10,10 +9,10 @@ RUN apt update -y &&  \
     apt-get install ffmpeg libsm6 libxext6  -y
 
 RUN apt-get install apt-transport-https ca-certificates gnupg -y
-RUN apt-get update && apt-get install google-cloud-cli -y
+RUN apt install python3 -y
 
 RUN pip install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu &&  \
     pip install -r requirements.txt &&  \
     pip install -e .
 
-CMD ["python","app.py"]
+CMD ["python3","app.py"]

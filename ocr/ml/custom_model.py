@@ -105,7 +105,7 @@ class Model:
 
     def predict(self, img):
         try:
-            return self.crnn(img.to(self.device))
+            return self.crnn(img.to("cpu"))
         except Exception as e:
             raise CustomException(e, sys) from e
 
