@@ -1,4 +1,3 @@
-#FROM continuumio/miniconda3
 FROM google/cloud-sdk:latest
 WORKDIR ocr
 COPY . /ocr
