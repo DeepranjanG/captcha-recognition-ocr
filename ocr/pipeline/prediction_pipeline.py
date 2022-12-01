@@ -51,7 +51,7 @@ class PredictionPipeline:
     def prediction(self, best_model_path: str, image) -> float:
         logging.info("Entered the prediction method of PredictionPipeline class")
         try:
-            model = torch.load(best_model_path, map_location=torch.device(DEVICE))
+            model = torch.load(best_model_path, map_location=torch.device("cpu"))
             logits = model.predict(image.unsqueeze(0))
             pred_text = model.decode(logits.cpu())
             return pred_text
